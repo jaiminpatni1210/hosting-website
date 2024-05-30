@@ -29,10 +29,10 @@
 </head>
 
 <body>
-    <div class="rts-sign-up-section">
-        <div class="section-inner">
+    <div class="rts-sign-up-section" >
+        <div class="section-inner d-grid ">
             <!-- Logo Start -->
-            <div class="row"> 
+            <div class="row mb-5"> 
                 <div class="rts-header__wrapper justify-content-center">           
                     <img  src="assets/images/logo/Mtech Infotech Main Logo.png" alt="MTech Infotech" height="auto" width="50px">
                     <p class="text-cente my-4 mx-3 fw-bold text-dark  fs-2">Powered By MTech Infotech</p>
@@ -43,10 +43,10 @@
                 <h2 class="form-title">Sign In</h2>
                 <div class="form-inner">
                     <div class="single-wrapper">
-                        <input type="email" placeholder="Your email" required>
+                        <input type="email" id="email" name="email" placeholder="Your email" required>
                     </div>
                     <div class="single-wrapper">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" id="password" required>
                     </div>
                     <div class="check">
                         <div class="check-box-area">
@@ -182,6 +182,21 @@
     <!-- contact form js -->
     <script defer src="assets/js/plugins/contact-form.js"></script>
     <script defer src="assets/js/main.js"></script>
+    <script>
+      const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // prevent default form submission behavior
+
+            // validate email and password
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (email === 'myemail' && password === 'mypassword') {
+                alert('Login successful!');
+            } else {
+                alert('Email or password incorrect. Please try again.');
+            }
+        });
+      </script>
 </body>
 
 
