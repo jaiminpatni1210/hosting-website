@@ -39,7 +39,7 @@
                 </div>
            </div>
             <!-- Logo End -->
-            <form action="#">
+            <form action="#" id="signInForm">
                 <h2 class="form-title">Sign In</h2>
                 <div class="form-inner">
                     <div class="single-wrapper">
@@ -183,19 +183,31 @@
     <script defer src="assets/js/plugins/contact-form.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script>
-      const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // prevent default form submission behavior
+ document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('signInForm');
 
-            // validate email and password
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            if (email === 'myemail' && password === 'mypassword') {
-                alert('Login successful!');
-            } else {
-                alert('Email or password incorrect. Please try again.');
-            }
-        });
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // Check if the browser supports local storage
+    if (typeof (Storage) !== "undefined") {
+      // Store username and password in local storage
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+      
+      alert('Sign in successful!');
+    } else {
+      alert('Sorry, your browser does not support web storage...');
+    }
+
+    // Clear the form
+    form.reset();
+  });
+});
+
       </script>
 </body>
 

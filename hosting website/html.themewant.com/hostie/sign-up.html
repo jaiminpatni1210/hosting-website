@@ -26,6 +26,7 @@
     <link rel="stylesheet preload" href="assets/css/plugins/metismenu.css" as="style">
     <!-- Custom css -->
     <link rel="stylesheet preload" href="assets/css/style.css" as="style">
+    
 </head>
 
 <body>
@@ -39,21 +40,19 @@
     </div>
 </div>
 <!-- Logo End -->
-            <form action="#" class="">
+            <form action="#"  onsubmit="saveData(event)">
                 <h2 class="form-title">Sign up</h2>
                 <div class="form-inner">
                     <div class="single-wrapper">
-                        <input type="text" placeholder="Full name" required>
+                        <input type="text" placeholder="Full name" name="userName" id="userName" required>
                     </div>
                     <div class="single-wrapper">
-                        <input type="email" placeholder="Your email" required>
+                        <input type="email" placeholder="Your email" name="email" id="email" required>
                     </div>
                     <div class="single-wrapper">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" name="password" id="password" required>
                     </div>
-                    <div class="single-wrapper">
-                        <input type="password" placeholder="Re-enter password" required>
-                    </div>
+                   
                     <div class="check">
                         <div class="check-box-area">
                             <input type="checkbox" id="scales" name="scales" />
@@ -63,6 +62,7 @@
                     <div class="form-btn">
                         <button type="submit" class="primary__btn">Create an account</button>
                     </div>
+                    <div id="message"></div>
                 </div>
                 <p class="sign-in-option">You already have an account? <a href="sign-in.html">Sign in</a></p>
             </form>
@@ -187,6 +187,39 @@
     <!-- contact form js -->
     <script defer src="assets/js/plugins/contact-form.js"></script>
     <script defer src="assets/js/main.js"></script>
+    <script>
+    const saveData = (e) => {
+
+e.preventDefault();
+
+let obj = {
+     "username" :documemnt.getElementById("userName").value, 
+    "email" :document.getElementById("email").value,
+    "password":document.getElementById("password").value,
+
+}
+
+fetch("https://localhost:8080/app/auth/signup",{
+    method : "post",                
+    headers: {
+        'Content-Type': "application/json"
+    },
+    body: JSON.stringify(obj),
+})
+.then(y => y.json())
+.then(y => {
+
+    console.log(y);
+
+   
+    
+    window.location.href = "sign-in.html";
+})
+}
+
+ 
+
+    </script>
 </body>
 
 
